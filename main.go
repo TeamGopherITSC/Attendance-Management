@@ -131,6 +131,8 @@ func Index(w http.ResponseWriter, r *http.Request) {
 //     defer db.Close()
 // }
 
+//INSERT USED TO ADD INFORMATION TO NEW USERS
+
 func Insert(w http.ResponseWriter, r *http.Request) {
 	db := dbConn()
 	if r.Method == "POST" {
