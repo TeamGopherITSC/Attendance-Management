@@ -7,6 +7,7 @@ import (
 	"text/template"
 
 	_ "github.com/go-sql-driver/mysql"
+
 )
 
 type Student struct {
@@ -133,29 +134,6 @@ func Index(w http.ResponseWriter, r *http.Request) {
 
 //INSERT USED TO ADD INFORMATION TO NEW USERS
 
-func Insert(w http.ResponseWriter, r *http.Request) {
-	db := dbConn()
-	if r.Method == "POST" {
-		fname := r.FormValue("fname")
-		pass := r.FormValue("pass")
-		email := r.FormValue("email")
-		uname := r.FormValue("uname")
-		phone := r.FormValue("phone")
-		empl := r.FormValue("type")
-		insForm, err := db.Prepare("INSERT into admininfo(username,password,email,fname,phone,type) VALUES(?,?,?,?,?,?)")
-		if err != nil {
-			panic(err.Error())
-		}
-		insForm.Exec(uname, pass, email, fname, phone, empl)
-		// tmpl2.ExecuteTemplate(w, "success",nil)
-		// http.Redirect(w,r,"/",301)
-		http.Redirect(w, r, "/", 301)
-
-	}
-	defer db.Close()
-
-}
-
 func Login(w http.ResponseWriter, r *http.Request) {
 	db := dbConn()
 	
@@ -226,6 +204,31 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	defer db.Close()
 
 }
+
+func Insert(w http.ResponseWriter, r *http.Request) {
+	db := dbConn()
+	if r.Method == "POST" {
+		fname := r.FormValue("fname")
+		pass := r.FormValue("pass")
+		email := r.FormValue("email")
+		uname := r.FormValue("uname")
+		phone := r.FormValue("phone")
+		empl := r.FormValue("type")
+		insForm, err := db.Prepare("INSERT into admininfo(username,password,email,fname,phone,type) VALUES(?,?,?,?,?,?)")
+		if err != nil {
+			panic(err.Error())
+		}
+		insForm.Exec(uname, pass, email, fname, phone, empl)
+		// tmpl2.ExecuteTemplate(w, "success",nil)
+		// http.Redirect(w,r,"/",301)
+		http.Redirect(w, r, "/", 301)
+
+	}
+	defer db.Close()
+
+}
+
+
 
 // func Update(w http.ResponseWriter, r *http.Request) {
 //     db := dbConn()
