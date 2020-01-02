@@ -1,0 +1,164 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>University Attendance Management System</title>
+<meta charset="UTF-8">
+
+  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
+   
+  <link rel="stylesheet" href="styles.css" >
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<header>
+
+  <h1>University Attendance Management System</h1>
+  <div class="navbar">
+  <a href="index.html">Home</a>
+  <a href="students.html">Students</a>
+  <a href="teachers.html">Faculties</a>
+  <a href="attendance.html">Attendance</a>
+  <a href="report.html">Report</a>
+  <a href="../index.html">Logout</a>
+
+</div>
+
+</header>
+
+<center>
+
+<div class="row">
+
+  <div class="content">
+    <h3>Individual Report</h3>
+
+    <form method="post" action="">
+
+    <label>Select Subject</label>
+    <select name="whichcourse">
+   
+         <option  value="algo">Data Logic Design</option>
+         <option  value="algolab">Data Logic Design Lab</option>
+        <option  value="dbms">Database Management System</option>
+        <option  value="dbmslab">Database Management System Lab</option>
+        <option  value="weblab">Web Programming Lab</option>
+        <option  value="os">Operating System</option>
+        <option  value="oslab">Operating System Lab</option>
+        <option  value="obm">Object Based Modeling</option>
+        <option  value="softcomp">Software Computing</option>
+    </select>
+
+      <p>  </p>
+      <label>Student Reg. No.</label>
+      <input type="text" name="sr_id">
+      <input type="submit" name="sr_btn" value="Go!" >
+
+    </form>
+
+    <h3>Mass Report</h3>
+
+    <form method="post" action="">
+
+    <label>Select Subject</label>
+    <select name="course">
+    <option  value="algo">Data Logic Design</option>
+         <option  value="algolab">Data Logic Design Lab</option>
+        <option  value="dbms">Database Management System</option>
+        <option  value="dbmslab">Database Management System Lab</option>
+        <option  value="weblab">Web Programming Lab</option>
+        <option  value="os">Operating System</option>
+        <option  value="oslab">Operating System Lab</option>
+        <option  value="obm">Object Based Modeling</option>
+        <option  value="softcomp">Software Computing</option>
+    </select>
+    <p>  </p>
+      <label>Date ( yyyy-mm-dd )</label>
+      <input type="text" name="date">
+      <input type="submit" name="sr_date" value="Go!" >
+    </form>
+
+    <br>
+
+    <br>
+
+   
+    <table class="table table-stripped">
+      <thead>
+        <tr>
+          <th scope="col">Reg. No.</th>
+          <th scope="col">Name</th>
+          <th scope="col">Department</th>
+          <th scope="col">Batch</th>
+          <th scope="col">Date</th>
+          <th scope="col">Attendance Status</th>
+        </tr>
+     </thead>
+
+
+    
+        <tbody>
+           <tr>
+             <td></td>
+             <td></td>
+             <td></td>
+             <td></td>
+             <td></td>
+             <td></td>
+           </tr>
+        </tbody>
+     
+    </table>
+
+
+    <form method="post" action="" class="form-horizontal col-md-6 col-md-offset-3">
+    <table class="table table-striped">
+
+    
+
+
+     <tbody>
+      <tr>
+          <td>Student Reg. No: </td>
+          <td></td>
+      </tr>
+
+          
+      
+      <tr>
+        <td>Total Class (Days): </td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td>Present (Days): </td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td>Absent (Days): </td>
+        <td></td>
+      </tr>
+
+    </tbody>
+
+   
+    </table>
+  </form>
+
+  </div>
+
+</div>
+
+</center>
+
+</body>
+</html>
