@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"text/template"
+	"time"
 
 	_ "github.com/go-sql-driver/mysql"
 
@@ -43,6 +44,14 @@ func Reset(w http.ResponseWriter, r *http.Request) {
 
 func Signup(w http.ResponseWriter, r *http.Request) {
 	tmpl.ExecuteTemplate(w, "signup.html", nil)
+}
+
+func Students(w http.ResponseWriter, r *http.Request) {
+	tmpl3.ExecuteTemplate(w, "students.html", nil)
+}
+
+func AttendanceSt(w http.ResponseWriter, r *http.Request) {
+	tmpl3.ExecuteTemplate(w, "attendance.html", nil)
 }
 
 func AdminIndex(w http.ResponseWriter, r *http.Request) {
@@ -105,6 +114,135 @@ func Index(w http.ResponseWriter, r *http.Request) {
 //     defer db.Close()
 // }
 
+func save(w http.ResponseWriter, r *http.Request) {
+	dt := time.Now()
+	db := dbConn()
+	selDB,err := db.Query("SELECT * FROM student WHERE st_batch=?", Bat)
+	if err != nil {
+		log.Println("Error")
+		Err := "Not Found"
+		tmpl3.ExecuteTemplate(w, "attendance.html", Err)
+	}	
+	if r.Method == "POST" {
+		//Bat := r.FormValue("whichbatch")
+		for selDB.Next() {
+			var Id int
+			var Name string
+			var Dept string
+			var Batch int
+			var Semester int
+			var Email string
+			err = selDB.Scan(&Id, &Name, &Dept, &Batch, &Semester, &Email)
+			insForm, err := db.Prepare("INSERT into attendance(stat_id,course,st_status,stat_date) VALUES(?,?,?,?)")
+			if err != nil {
+				panic(err.Error())
+			}
+			id := Id
+			course := r.FormValue("whichcourse")
+			status := r.FormValue("st_status")
+			insForm.Exec(id, course, status, dt)
+		}
+
+		// tmpl2.ExecuteTemplate(w, "success",nil)
+		// http.Redirect(w,r,"/",301)
+		http.Redirect(w, r, "/attendance", 301)
+
+	}
+	defer db.Close()
+
+}
+
+func checkCount(rows *sql.Rows) (count int) {
+	for rows.Next() {
+		err := rows.Scan(&count)
+		checkErr(err)
+	}
+	return count
+}
+
+func checkErr(err error) {
+	if err != nil {
+		panic(err)
+	}
+}
+
+var Bat int
+
+func ShowAtt(w http.ResponseWriter, r *http.Request) {
+	db := dbConn()
+	Bat := r.FormValue("whichbatch")
+	selDB, err := db.Query("SELECT * FROM students WHERE st_batch=?", Bat)
+	if err != nil {
+		log.Println("Error")
+		Err := "Not Found"
+		tmpl3.ExecuteTemplate(w, "attendance.html", Err)
+	}
+	Stu := Student{}
+	res := []Student{}
+	for selDB.Next() {
+		var Id int
+		var Name string
+		var Dept string
+		var Batch int
+		var Semester int
+		var Email string
+		err = selDB.Scan(&Id, &Name, &Dept, &Batch, &Semester, &Email)
+		log.Println(string(Id) + " " + Name + " " + Dept + " " + string(Batch) + " " + string(Semester) + " " + Email)
+		if err != nil {
+			log.Println("Error Found")
+			Err := "Not Found"
+			tmpl3.ExecuteTemplate(w, "attendance.html", Err)
+		}
+		Stu.Id = Id
+		Stu.Name = Name
+		Stu.Dept = Dept
+		Stu.Batch = Batch
+		Stu.Semester = Semester
+		Stu.Email = Email
+		res = append(res, Stu)
+	}
+	tmpl3.ExecuteTemplate(w, "attendance.html", res)
+	defer db.Close()
+}
+
+func Show(w http.ResponseWriter, r *http.Request) {
+	db := dbConn()
+	Bat1 := r.FormValue("sr_batch")
+
+	selDB, err := db.Query("SELECT * FROM students WHERE st_batch=?", Bat1)
+	if err != nil {
+		log.Println("Error")
+		Err := "Not Found"
+		tmpl3.ExecuteTemplate(w, "students.html", Err)
+	}
+	Stu := Student{}
+	res := []Student{}
+	for selDB.Next() {
+		var Id int
+		var Name string
+		var Dept string
+		var Batch int
+		var Semester int
+		var Email string
+		err = selDB.Scan(&Id, &Name, &Dept, &Batch, &Semester, &Email)
+		log.Println(string(Id) + " " + Name + " " + Dept + " " + string(Batch) + " " + string(Semester) + " " + Email)
+		if err != nil {
+			log.Println("Error Found")
+			Err := "Not Found"
+			tmpl3.ExecuteTemplate(w, "students.html", Err)
+		}
+		Stu.Id = Id
+		Stu.Name = Name
+		Stu.Dept = Dept
+		Stu.Batch = Batch
+		Stu.Semester = Semester
+		Stu.Email = Email
+		res = append(res, Stu)
+	}
+	tmpl3.ExecuteTemplate(w, "students.html", res)
+	defer db.Close()
+}
+
 // func New(w http.ResponseWriter, r *http.Request) {
 //     tmpl.ExecuteTemplate(w, "New", nil)
 // }
@@ -136,35 +274,34 @@ func Index(w http.ResponseWriter, r *http.Request) {
 
 func Login(w http.ResponseWriter, r *http.Request) {
 	db := dbConn()
-	
 
 	if r.Method == "POST" {
 		usname := r.FormValue("username")
 		pass := r.FormValue("password")
 		etype := r.FormValue("type")
-		selDb, err := db.Query("SELECT * FROM admininfo WHERE username=? AND password=?", usname,pass)
+		selDb, err := db.Query("SELECT * FROM admininfo WHERE username=? AND password=?", usname, pass)
 		for selDb.Next() {
-						var ettype string
-						var usnamee string
-						var passs string
-						var phone string
-						var email string
-						var fname string
-						err = selDb.Scan(&usnamee, &passs, &email, &fname, &phone, &ettype) 
-		if err == nil && etype==ettype{
-			log.Println(usname + " " + pass + " " )
-			log.Println(usnamee+" "+passs+" "+ettype)
-			if etype == "admin" {
-				http.Redirect(w, r, "/adminindex", 301)
-			} else if etype == "student" {
-				http.Redirect(w, r, "/studentindex", 301)
-			} else if etype == "teacher" {
-				http.Redirect(w, r, "/teacherindex", 301)
+			var ettype string
+			var usnamee string
+			var passs string
+			var phone string
+			var email string
+			var fname string
+			err = selDb.Scan(&usnamee, &passs, &email, &fname, &phone, &ettype)
+			if err == nil && etype == ettype {
+				log.Println(usname + " " + pass + " ")
+				log.Println(usnamee + " " + passs + " " + ettype)
+				if etype == "admin" {
+					http.Redirect(w, r, "/adminindex", 301)
+				} else if etype == "student" {
+					http.Redirect(w, r, "/studentindex", 301)
+				} else if etype == "teacher" {
+					http.Redirect(w, r, "/teacherindex", 301)
+				}
+			} else {
+				http.Redirect(w, r, "/", 301)
 			}
-		} else {
-			http.Redirect(w,r,"/",301)
 		}
-	}
 	}
 
 	// if r.Method == "POST" {
@@ -228,8 +365,6 @@ func Insert(w http.ResponseWriter, r *http.Request) {
 
 }
 
-
-
 // func Update(w http.ResponseWriter, r *http.Request) {
 //     db := dbConn()
 //     if r.Method == "POST" {
@@ -274,6 +409,11 @@ func main() {
 	mux.HandleFunc("/studentindex", StudentIndex)
 	mux.HandleFunc("/teacherindex", TeacherIndex)
 	mux.HandleFunc("/login", Login)
+	mux.HandleFunc("/students", Students)
+	mux.HandleFunc("/show", Show)
+	mux.HandleFunc("/showAtt", ShowAtt)
+	mux.HandleFunc("/attendance", AttendanceSt)
+	mux.HandleFunc("/save", save)
 
 	//http.HandleFunc("/admin/signup",Insert)
 	// http.HandleFunc("/show", Show)
