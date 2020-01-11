@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title>University Attendance Management System</title>
+<meta charset="UTF-8">
+  
+  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
+   
+  <link rel="stylesheet" href="styles.css" >
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</head>
+
+<body>
+
+<header>
+
+  <h1>University Attendance Management System</h1>
+  <div class="navbar">
+    <a href="/teacherindex">Home</a>
+  <a href="/attendance">Attendance</a>
+  <a href="/teacherreport">Report</a>
+  <a href="/teacherreport">My Account</a>
+  <a href="../index.html">Logout</a>
+</div>
+
+</header>
+
+<center>
+
+<div class="row">
+    <div class="content">
+
+          <h3>Update Account</h3>
+          <br>
+          
+          <!-- Error or Success Message printint started --><p>
+      
+          </p><!-- Error or Success Message printint ended -->
+
+          <br>
+   
+          <form method="post" action="" class="form-horizontal col-md-6 col-md-offset-3">
+            <div class="form-group">
+                <label for="input1" class="col-sm-3 control-label">Registration No.</label>
+                <div class="col-sm-7">
+                  <input type="text" name="sr_id"  class="form-control" id="input1" placeholder="enter your reg. no. to continue" />
+                </div>
+            </div>
+            <input type="submit" class="btn btn-primary col-md-3 col-md-offset-7" value="Go!" name="sr_btn" />
+          </form>
+          <div class="content"></div>
+
+
+<form action="" method="post" class="form-horizontal col-md-6 col-md-offset-3">
+   <table class="table table-striped">
+
+          <tr>
+              <td>Name:</td>
+              <td><input type="text" name="name" value=""></input></td>
+          </tr>
+
+          <tr>
+              <td>Department:</td>
+              <td><input type="text" name="dept" value=""></input></td>
+          </tr>
+
+           <tr>
+              <td>Phone:</td>
+              <td><input type="number" name="phone" value=""></input></td>
+          </tr>
+
+          <tr>
+              <td>Email:</td>
+              <td><input type="text" name="email" value=""></input></td>
+          </tr>
+          <input type="hidden" name="id" value="">
+          
+          <tr><td></td></tr>
+          <tr>
+                <td></td>
+                <td><input type="submit" class="btn btn-primary col-md-3 col-md-offset-7" value="Update" name="done" /></td>
+                
+          </tr>
+
+    </table>
+</form>
+     
+
+
+      </div>
+
+  </div>
+
+  </center>
+<!-- Contents, Tables, Forms, Images ended -->
+
+</body>
+<!-- Menus ended -->
+
+</html>
