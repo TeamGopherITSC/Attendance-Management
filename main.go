@@ -32,14 +32,19 @@ func dbConn() (db *sql.DB) {
 	return db
 }
 
-var tmpl = template.Must(template.ParseFiles("index.html", "reset.html", "signup.html"))
+var tmpl = template.Must(template.ParseFiles("index.html", "reset.html", "signup.html","faculty.html"))
 var tmpl1 = template.Must(template.ParseGlob("admin/*"))
 var tmpl2 = template.Must(template.ParseGlob("student/*"))
 var tmpl3 = template.Must(template.ParseGlob("teacher/*"))
 var tmpl4 = template.Must(template.ParseGlob("template/*"))
+var tmpl5 = template.Must(template.ParseGlob("faculty/*"))
 
 func Reset(w http.ResponseWriter, r *http.Request) {
 	tmpl.ExecuteTemplate(w, "reset.html", nil)
+}
+
+func Faculty(w http.ResponseWriter, r *http.Request) {
+	tmpl.ExecuteTemplate(w, "faculty.html", nil)
 }
 
 func Signup(w http.ResponseWriter, r *http.Request) {
@@ -84,6 +89,22 @@ func TeacherReport(w http.ResponseWriter, r *http.Request) {
 
 func TeacherTeachers(w http.ResponseWriter, r *http.Request) {
 	tmpl3.ExecuteTemplate(w, "teachers.html", nil)
+}
+
+func FacultyReport(w http.ResponseWriter, r *http.Request) {
+	tmpl5.ExecuteTemplate(w, "report.html", nil)
+}
+
+func FacultyAttendance(w http.ResponseWriter, r *http.Request) {
+	tmpl5.ExecuteTemplate(w, "attendance.html", nil)
+}
+
+func FacultyAccount(w http.ResponseWriter, r *http.Request) {
+	tmpl5.ExecuteTemplate(w, "account.html", nil)
+}
+
+func FacultyIndex(w http.ResponseWriter, r *http.Request) {
+	tmpl5.ExecuteTemplate(w, "index.html", nil)
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -439,6 +460,12 @@ func main() {
 	mux.HandleFunc("/studentstudents", StudntStudents)
 	mux.HandleFunc("/teacherreport",TeacherReport)
 	mux.HandleFunc("/teacherteachers",TeacherTeachers)
+	mux.HandleFunc("/facultyaccount", FacultyAccount)
+	mux.HandleFunc("/facultyreport", FacultyReport)
+	mux.HandleFunc("/facultyindex", FacultyIndex)
+	mux.HandleFunc("/facultyattendance", FacultyAttendance)
+	mux.HandleFunc("/faculty", Faculty)
+	
 
 	//http.HandleFunc("/admin/signup",Insert)
 	// http.HandleFunc("/show", Show)
