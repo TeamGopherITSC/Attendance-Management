@@ -1,75 +1,75 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>University Attendance Management System</title>
-<meta charset="UTF-8">
-
-  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
- 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
-   
-  <link rel="stylesheet" href="styles.css" >
-  
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<title>University Attendance Management System</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="assets/main.css">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </style>
 
 </head>
 <body>
 
-<header>
+	<header>
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+			<div class="navbar-header"><img src="assets/img/logo_fixed.jpg" class="img-fluid" height="50px" width="50px">
+				</div>
+				<ul class="nav navbar-nav">
+					<li><a href="index.html"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+					<li><a href="students.html"><span class="glyphicon glyphicon-user"></span>Students</a></li>
+					<li><a href="teachers.html"><span class="glyphicon glyphicon-briefcase"></span>Faculties</a></li>
+					<li><a href="attendance.html"><span class="glyphicon glyphicon-list-alt"></span>Attendance</a></li>
+					<li><a href="report.html"><span class="glyphicon glyphicon-book"></span>Report</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">	
+					<li><a href="../index.html"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+				</ul>
+			</div>
+		</nav>
 
-  <h1>University Attendance Management System</h1>
-  <div class="navbar">
-  <a href="index.html">Home</a>
-  <a href="students.html">Students</a>
-  <a href="teachers.html">Faculties</a>
-  <a href="attendance.html">Attendance</a>
-  <a href="report.html">Report</a>
-  <a href="../index.html">Logout</a>
+	</header>
 
-</div>
+	<center>
 
-</header>
+		<div class="row">
 
-<center>
+			<div class="content">
+				<h3>Teacher List</h3>
 
-<div class="row">
+				<table class="table table=stripped">
+					<thead>  
+						<tr>
+							<th scope="col">Teacher ID</th>
+							<th scope="col">Name</th>
+							<th scope="col">Department</th>
+							<th scope="col">Email</th>
+							<th scope="col">Course</th>
+						</tr>
+					</thead>
 
-  <div class="content">
-    <h3>Teacher List</h3>
-    
-    <table class="table table=stripped">
-        <thead>  
-          <tr>
-            <th scope="col">Teacher ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Department</th>
-            <th scope="col">Email</th>
-            <th scope="col">Course</th>
-          </tr>
-        </thead>
+					<tbody>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</tbody>
 
-          <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-          </tbody>
 
-          
-    </table>
+				</table>
 
-  </div>
+			</div>
 
-</div>
+		</div>
 
-</center>
+	</center>
 
 </body>
 </html>
