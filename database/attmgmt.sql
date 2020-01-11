@@ -23,6 +23,15 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
+CREATE TABLE `faculty` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `fname` varchar(20) NOT NULL,
+  `phone` varchar(10) NOT NULL,
+  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Table structure for table `admininfo`
@@ -132,6 +141,9 @@ INSERT INTO `teachers` (`tc_id`, `tc_name`, `tc_dept`, `tc_email`, `tc_course`) 
 --
 -- Indexes for dumped tables
 --
+
+ALTER TABLE `faculty`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `admininfo`

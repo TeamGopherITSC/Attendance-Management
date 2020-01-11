@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>University Attendance Management System</title>
+<meta charset="UTF-8">
+
+  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
+   
+  <link rel="stylesheet" href="styles.css" >
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<style type="text/css">
+  .status{
+    font-size: 10px;
+  }
+
+</style>
+
+</head>
+<body>
+
+<header>
+
+  <h1>University Attendance Management System</h1>
+  <div class="navbar">
+<a href="/facultyindex">Home</a>
+  <a href="/facultyattendance">Attendance</a>
+  <a href="/facultyreport">Report</a>
+  <a href="/facultyaccount">My Account</a>
+  <a href="../index.html">Logout</a>
+
+</div>
+
+</header>
+
+<center>
+
+<div class="row">
+
+  <div class="content">
+    <h3>Attendance of </h3>
+    <br>
+
+    <center><p></p></center> 
+    
+  <form method="post" class="form-horizontal col-md-6 col-md-offset-3" name="Form1">
+
+     <div class="form-group">
+
+
+                <label>Enter Password</label>
+                <input type="text" name="whichbatch" id="input2" placeholder="">
+              </div>
+  <body>
+    <tr>
+       <td>
+         <label>Check IN</label>
+         <input type="radio" name="st_status" value="IN" Checked>
+         <label>Check OUT </label>
+         <input type="radio" name="st_status" value="Out" >
+       </td>
+     </tr>
+  </body>
+
+     
+    </table>
+
+    <center><br>
+    <input type="submit" class="btn btn-primary col-md-2 col-md-offset-10" value="Save!" name="att" onClick="return onButton2();"/>
+  </center>
+
+</form>
+  </div>
+
+</div>
+
+</center>
+
+<script language = javascript>
+<!--
+function onButton1()
+{
+  document.Form1.action = "/showAtt"
+  document.Form1.submit();
+  return true;
+}
+function onButton2()
+{
+  document.Form1.action = "/save"
+  document.Form1.submit();
+  return true;
+}
+-->
+</script>
+
+
+
+</body>
+</html>

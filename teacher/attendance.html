@@ -29,11 +29,11 @@
 
   <h1>University Attendance Management System</h1>
   <div class="navbar">
-  <a href="index.html">Home</a>
-  <a href="students.html">Students</a>
-  <a href="teachers.html">Faculties</a>
-  <a href="attendance.html">Attendance</a>
-  <a href="report.html">Report</a>
+  <a href="/teacherindex">Home</a>
+  <a href="/students">Students</a>
+  <a href="/teacherteachers">Faculties</a>
+  <a href="/attendance">Attendance</a>
+  <a href="/teacherreport">Report</a>
   <a href="../index.html">Logout</a>
 
 </div>
@@ -50,28 +50,21 @@
 
     <center><p></p></center> 
     
-    <form action="" method="post" class="form-horizontal col-md-6 col-md-offset-3">
+  <form method="post" class="form-horizontal col-md-6 col-md-offset-3" name="Form1">
 
      <div class="form-group">
-
-               <!-- <label>Select Batch</label>
-                
-                <select name="whichbatch" id="input1">
-                      <option name="eight" value="38">38</option>
-                      <option name="seven" value="37">37</option>
-                </select>-->
 
 
                 <label>Enter Batch</label>
                 <input type="text" name="whichbatch" id="input2" placeholder="Only 2020">
               </div>
                
-     <input type="submit" class="btn btn-primary col-md-2 col-md-offset-5" value="Show!" name="batch" />
+     <input type="submit" class="btn btn-primary col-md-2 col-md-offset-5" value="Show!" name="batch" onClick="return onButton1();"/>
 
-    </form>
+   
 
     <div class="content"></div>
-    <form action="" method="post">
+    
 
       <div class="form-group">
 
@@ -104,27 +97,29 @@
       </thead>
    
   <body>
+  {{ range . }}
      <tr>
-       <td> <input type="hidden" name="stat_id[]" value=""> </td>
-       <td></td>
-       <td></td>
-       <td></td>
-       <td></td>
-       <td></td>
+       <td> {{ .Id }} <input type="hidden" name="stat_id[]" value=""> </td> </td>
+       <td>{{ .Name }}</td>
+       <td>{{ .Dept }}</td>
+       <td>{{ .Batch }}</td>
+       <td>{{ .Semester }}</td>
+       <td>{{ .Email }}</td>
        <td>
          <label>Present</label>
-         <input type="radio" name="st_status[]" value="Present" >
+         <input type="radio" name="st_status" value="Present" >
          <label>Absent </label>
-         <input type="radio" name="st_status[]" value="Absent" checked>
+         <input type="radio" name="st_status" value="Absent" checked>
        </td>
      </tr>
+  {{ end }}
   </body>
 
      
     </table>
 
     <center><br>
-    <input type="submit" class="btn btn-primary col-md-2 col-md-offset-10" value="Save!" name="att" />
+    <input type="submit" class="btn btn-primary col-md-2 col-md-offset-10" value="Save!" name="att" onClick="return onButton2();"/>
   </center>
 
 </form>
@@ -133,6 +128,25 @@
 </div>
 
 </center>
+
+<script language = javascript>
+<!--
+function onButton1()
+{
+  document.Form1.action = "/showAtt"
+  document.Form1.submit();
+  return true;
+}
+function onButton2()
+{
+  document.Form1.action = "/save"
+  document.Form1.submit();
+  return true;
+}
+-->
+</script>
+
+
 
 </body>
 </html>
