@@ -66,6 +66,26 @@ func TeacherIndex(w http.ResponseWriter, r *http.Request) {
 	tmpl3.ExecuteTemplate(w, "index.html", nil)
 }
 
+func StudentAccount(w http.ResponseWriter, r *http.Request) {
+	tmpl2.ExecuteTemplate(w, "account.html", nil)
+}
+
+func StudntReport(w http.ResponseWriter, r *http.Request) {
+	tmpl2.ExecuteTemplate(w, "report.html", nil)
+}
+
+func StudntStudents(w http.ResponseWriter, r *http.Request) {
+	tmpl2.ExecuteTemplate(w, "students.html", nil)
+}
+
+func TeacherReport(w http.ResponseWriter, r *http.Request) {
+	tmpl3.ExecuteTemplate(w, "reports.html", nil)
+}
+
+func TeacherTeachers(w http.ResponseWriter, r *http.Request) {
+	tmpl3.ExecuteTemplate(w, "teachers.html", nil)
+}
+
 func Index(w http.ResponseWriter, r *http.Request) {
 	tmpl.ExecuteTemplate(w, "index.html", nil)
 	// db := dbConn()
@@ -117,12 +137,12 @@ func Index(w http.ResponseWriter, r *http.Request) {
 func save(w http.ResponseWriter, r *http.Request) {
 	dt := time.Now()
 	db := dbConn()
-	selDB,err := db.Query("SELECT * FROM student WHERE st_batch=?", Bat)
+	selDB, err := db.Query("SELECT * FROM student WHERE st_batch=?", Bat)
 	if err != nil {
 		log.Println("Error")
 		Err := "Not Found"
 		tmpl3.ExecuteTemplate(w, "attendance.html", Err)
-	}	
+	}
 	if r.Method == "POST" {
 		//Bat := r.FormValue("whichbatch")
 		for selDB.Next() {
@@ -414,6 +434,11 @@ func main() {
 	mux.HandleFunc("/showAtt", ShowAtt)
 	mux.HandleFunc("/attendance", AttendanceSt)
 	mux.HandleFunc("/save", save)
+	mux.HandleFunc("/studentaccount", StudentAccount)
+	mux.HandleFunc("/stutentreport", StudntReport)
+	mux.HandleFunc("/studentstudents", StudntStudents)
+	mux.HandleFunc("/teacherreport",TeacherReport)
+	mux.HandleFunc("/teacherteachers",TeacherTeachers)
 
 	//http.HandleFunc("/admin/signup",Insert)
 	// http.HandleFunc("/show", Show)
