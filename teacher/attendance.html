@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
    
   <link rel="stylesheet" href="styles.css" >
+  <link rel="stylesheet" href="assets/main.css">
 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -26,19 +27,25 @@
 <body>
 
 <header>
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+			<div class="navbar-header"><img src="assets/img/logo_fixed.jpg" class="img-fluid" height="50px" width="50px">
+				</div>
+				<ul class="nav navbar-nav">
+					<li><a href="index.html"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+					<li><a href="students.html"><span class="glyphicon glyphicon-user"></span>Students</a></li>
+					<li><a href="teachers.html"><span class="glyphicon glyphicon-briefcase"></span>Faculties</a></li>
+					<li><a href="attendance.html"><span class="glyphicon glyphicon-list-alt"></span>Attendance</a></li>
+					<li><a href="report.html"><span class="glyphicon glyphicon-book"></span>Report</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">	
+					<li><a href="../index.html"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+				</ul>
+			</div>
+		</nav>
 
-  <h1>University Attendance Management System</h1>
-  <div class="navbar">
-  <a href="/teacherindex">Home</a>
-  <a href="/students">Students</a>
-  <a href="/teacherteachers">Faculties</a>
-  <a href="/attendance">Attendance</a>
-  <a href="/teacherreport">Report</a>
-  <a href="../index.html">Logout</a>
+	</header>
 
-</div>
-
-</header>
 
 <center>
 
@@ -70,11 +77,11 @@
 
         <label >Select Subject</label>
               <select name="whichcourse" id="input1">
-              <option  value="algo">Data Logic Design</option>
-         <option  value="algolab">Data Logic Design Lab</option>
-        <option  value="dbms">Database Management System</option>
-        <option  value="dbmslab">Database Management System Lab</option>
-        <option  value="weblab">Web Programming Lab</option>
+              <option  value="algo">Digital Logic Design</option>
+         <option  value="algolab">Digital Logic Design Lab</option>
+        <option  value="dbms">Enterprise Database Administration</option>
+        <option  value="dbmslab">Enterprise Database System Lab</option>
+        <option  value="weblab">Web Programming I Lab</option>
         <option  value="os">Operating System</option>
         <option  value="oslab">Operating System Lab</option>
         <option  value="obm">Object Based Modeling</option>
